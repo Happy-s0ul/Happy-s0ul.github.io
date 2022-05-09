@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Рестораны в Москве</title>
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid2@7.2.1/flexboxgrid2.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="logo">
+        <img src="img/logo.svg" alt="logo" width="119px" height="12px">
+      </div>
+      <nav>
+        <button><a href="#">Войти</a></button>
+        <a href="#">
+          <div class="basket">
+            <img src="img/basket.svg" alt="basket">
+          </div>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="shops">
+    <div class="container">
+      <div class="row" style="margin: 0;">
+        <input type="text" class="search col-xs-12 indent" placeholder="Поиск по ресторанам и кухням">
+      </div>
+      <h1 class="indent">Рестораны в Москве</h1>
+      <div class="row between-md">
+        <div class="card col-lg-4 col-md-6 col-xs-12">
+          <a href="#">
+            <div class="img back1"></div>
+          </a>
+          <h4>Макдоналдс — Газетный</h4>
+          <p class="price">₽₽ • Бургеры</p>
+          <p class="time">25 - 35 мин</p>
+        </div>
+        <div class="card col-lg-4 col-md-6 col-xs-12">
+          <a href="#">
+            <div class="img back2"></div>
+          </a>
+          <h4>DimSum & Co — ЦДМ</h4>
+          <p class="price">₽ • Японская • Китайская • Азиатская</p>
+          <p class="time">40 - 50 мин</p>
+        </div>
+        <div class="card col-lg-4 col-md-6 col-xs-12">
+          <a href="#">
+            <div class="img back3"></div>
+          </a>
+          <h4>ДвижОК — Манежная</h4>
+          <p class="price">₽ • Американская • Европейская</p>
+          <p class="time">35 - 45 мин</p>
+        </div>
+        <div class="card col-lg-4 col-md-6 col-xs-12">
+          <a href="#">
+            <div class="img back4"></div>
+          </a>
+          <h4>НЯ — NHA</h4>
+          <p class="price">₽₽ • Вьетнамская</p>
+          <p class="time">30 - 40 мин</p>
+        </div>
+        <div class="card col-lg-4 col-md-6 col-xs-12">
+          <a href="#">
+            <div class="img back5"></div>
+          </a>
+          <h4>Точка Дзы — Цветной</h4>
+          <p class="price">₽₽ • Вьетнамская</p>
+          <p class="time">40 - 50 мин</p>
+        </div>
+        <div class="card col-lg-4 col-md-6 col-xs-12">
+          <a href="#">
+            <div class="img back6"></div>
+          </a>
+          <h4>Cinnabon</h4>
+          <p class="price">₽ • Выпечка • Десерты • Капкейки</p>
+          <p class="time">25 - 35 мин</p>
+        </div>
+        <div class="card col-lg-4 col-md-6 col-xs-12">
+          <a href="#">
+            <div class="img back7"></div>
+          </a>
+          <h4>PIZZELOVE</h4>
+          <p class="price">₽₽ • Пицца</p>
+          <p class="time">15 - 25 мин</p>
+        </div>
+        <div class="card col-lg-4 col-md-6 col-xs-12">
+          <a href="#">
+            <div class="img back8"></div>
+          </a>
+          <h4>Zю кафе — Тверская</h4>
+          <p class="price">₽₽ • Японская</p>
+          <p class="time">25 - 35 мин</p>
+        </div>
+        <div class="card col-lg-4 col-md-6 col-xs-12">
+          <a href="#">
+            <div class="img back9"></div>
+          </a>
+          <h4>Bar BQ Cafe — Манежная</h4>
+          <p class="price">₽₽₽ • Европейская</p>
+          <p class="time">30 - 40 мин</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <img src="img\footer\white-logofooter.svg" alt="white-logo" width="190px" height="19px" class="footer-logo">
+      <div class="row">
+        <div class="col-xs-12">
+          <hr>
+        </div>
+        <div class="one-column col-lg-3 col-md-3 col-xs-7">
+          <select name="language" size="1" class="language">
+            <option selected>Russian</option>
+            <option>English</option>
+          </select>
+          <img src="img\footer\social.png" alt="social">
+        </div>
+        <div class="one-column col-lg-1 col-md-1 col-xs-5"></div>
+        <div class="two-column col-lg-4 col-md-4 col-xs-12">
+          <div class="hidden-xs hidden-sm" style="height: 23px;"></div>
+          <a href="#">Об UberEats</a>
+          <a href="#">Станьте партнёром по доставке</a>
+          <a href="#">Станьте парнёром-рестораном</a>
+        </div>
+        <div class="three-column col-lg-4 col-md-4 col-xs-12">
+          <div class="hidden-xs hidden-sm" style="height: 23px;"></div>
+          <a href="#">Все города</a>
+          <a href="#">Цены</a>
+          <a href="#">Помощь</a>
+          <a href="#">FAQs</a>
+        </div>
+        <div class="col-xs-12">
+          <hr>
+        </div>
+        <div class="row col-xs-12 center-xs download">
+          <a href="#">
+            <img src="img\footer\Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.png"
+              alt="Download_on_the_App_Store">
+          </a>
+          <a href="#">
+            <img src="img\footer\en_badge_web_generic-cf6dad406f.png" alt="Download_on_the_Google">
+          </a>
+        </div>
+        <div class="col-xs-12">
+          <hr>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12">
+          <p>© 2017 Uber Technologies Inc.</p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12">
+          <div class="hidden-xs hidden-sm" style="height: 23px;"></div>
+          <a href="#">Обработка персональных данных</a>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12">
+          <div class="hidden-xs hidden-sm" style="height: 23px;"></div>
+          <a href="#">Пользовательское соглашение</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block_top">
+      <a href="#top" class="up"></a>
+    </div>
+  </footer>
+</body>
+</html>
