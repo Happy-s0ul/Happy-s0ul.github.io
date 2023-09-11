@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            min-width: 250px;
+            margin: 0;
+            background-color: #AAD576;
+            font-size: 18px;
+            font-family: sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .mainBlock {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 5px 15px 10px;
+            border-radius: 5px;
+            background-color: #FEFAE0;
+            text-align: left;
+            box-shadow:
+                0px 0px 9.8px rgba(0, 0, 0, 0.027),
+                0px 0px 14.7px rgba(0, 0, 0, 0.062),
+                0px 0px 19.3px rgba(0, 0, 0, 0.111),
+                0px 0px 24.6px rgba(0, 0, 0, 0.177),
+                0px 0px 31.8px rgba(0, 0, 0, 0.278),
+                0px 0px 52px rgba(0, 0, 0, 0.58);
+        }
+
+        h2 {
+            margin: 10px 0 15px 0;
+            text-align: center;
+        }
+
+        .inputBlock {
+            margin: 10px 0;
+            display: flex;
+        }
+
+        #inputForm {
+            appearance: none;
+            width: 85%;
+            height: 30px;
+            border: 0;
+            border-radius: 5px 0 0 5px;
+            padding: 6px 14px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        #inputForm:focus {
+            outline: 2px solid #DDA15E;
+            box-shadow: 0 0 0 4px #eee4cb;
+
+        }
+
+        button {
+            appearance: none;
+            min-width: 230px;
+            margin: 5px auto;
+            padding: 7px 18px;
+            border: 0;
+            border-radius: 5px;
+            background: #DDA15E;
+            color: black;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #BC6C25;
+        }
+
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px #eee4cb;
+        }
+
+        .buttonBlock {
+            margin: 10px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        #addBtn {
+            width: 15%;
+            min-width: 15%;
+            height: 30px;
+            margin: 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        @media (max-width: 610px) {
+            #addBtn {
+                padding: 4px 9px;
+            }
+        }
+
+        .settingsText {
+            margin: 5px 0;
+            padding-top: 10px;
+            border-top: 1px solid transparent;
+            border-image: linear-gradient(to right, #F2EFBB, black, #F2EFBB) 1;
+        }
+
+        .checkboxBlock {
+            margin: 5px 0;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkboxLabel {
+            display: inline-block;
+            padding-left: 25px;
+            position: relative;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .checkboxLabel:before {
+            content: "";
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 1px;
+            background-color: #DDA15E;
+        }
+
+        input[type="checkbox"]:checked+.checkboxLabel:before {
+            content: "\2022";
+            text-align: center;
+            line-height: 16px;
+            font-size: 40px;
+            color: #f3f3f3;
+        }
+
+        #toDoList {
+            padding: 5px 15px 15px;
+            list-style-type: none;
+            transition: all 1s;
+
+        }
+
+        li {
+            max-width: 100%;
+            max-height: 100px;
+            margin: 10px auto 0;
+            padding: 8px 30px 8px 10px;
+            border-radius: 5px;
+            background-color: #e3f6b4;
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            user-select: none;
+            overflow-y: auto;
+            transition: all 1s;
+            cursor: pointer;
+        }
+
+        li:hover {
+            background-color: #538D22;
+        }
+
+        .selfDeletingButton {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            background-image: url("https://cdn.icon-icons.com/icons2/936/PNG/512/trash_icon-icons.com_73364.png");
+            background-color: #DDA15E;
+            background-repeat: no-repeat;
+            background-size: 50%;
+            background-position: center;
+            transition: all 0.3s;
+        }
+
+        .selfDeletingButton:hover {
+            background-color: #bc4749;
+        }
+
+        .even,
+        .odd {
+            background-color: #F6E2BB;
+            color: black;
+        }
+
+        .even:hover,
+        .odd:hover {
+            background-color: #BC6C25;
+        }
+
+        .completed {
+            max-width: 85%;
+            margin: 10px auto 0;
+            background-color: #233d0ad6;
+            text-decoration: line-through;
+            transition: all 1s;
+        }
+
+        .newItem,
+        .removing {
+            max-height: 0;
+            margin: 0 auto;
+            padding: 0 5px;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainBlock">
+        <h2>Мой список дел </h2>
+        <div class="inputBlock">
+            <input type="text" id="inputForm" placeholder="Что добавить в список?">
+            <button type="button" id="addBtn">Добавить</button>
+        </div>
+        <div class="buttonBlock">
+            <button type="button" id="delFirstBtn">Удалить первый элемент</button>
+            <button type="button" id="delLastBtn">Удалить последний элемент</button>
+        </div>
+        <div class="settingsText">Настройка внешнего вида</div>
+        <div class="checkboxBlock">
+            <input type="checkbox" id="checkboxEven" checked>
+            <label for="checkboxEven" class="checkboxLabel">Включить/выключить выделение четныех элементов</label>
+        </div>
+        <div class="checkboxBlock">
+            <input type="checkbox" id="checkboxOdd">
+            <label for="checkboxOdd" class="checkboxLabel">Включить/выключить выделение нечетных элементов</label>
+        </div>
+    </div>
+    <ul id="toDoList" class="mainBlock">
+        <li>Купить подарок на День рождения
+            <div class="selfDeletingButton"></div>
+        </li>
+        <li>Купить новый стол
+            <div class="selfDeletingButton"></div>
+        </li>
+        <li>Вытащить друзей на прогулку
+            <div class="selfDeletingButton"></div>
+        </li>
+        <li>Научиться готовить торт
+            <div class="selfDeletingButton"></div>
+        </li>
+        <li>Найти новую работу
+            <div class="selfDeletingButton"></div>
+        </li>
+        <li class="completed">Прочесть "Дюну"
+            <div class="selfDeletingButton"></div>
+        </li>
+    </ul>
+
+    <script>
+        function changeEvenStyle(changeFlag = false) {
+            let listItems = toDoList.querySelectorAll("li:nth-of-type(2n)");
+            if (changeFlag) {
+                evenStyleFlag = !evenStyleFlag;
+            }
+            for (let item of listItems) {
+                item.classList.toggle("even");
+            }
+        }
+
+        function changeOddStyle(changeFlag = false) {
+            let listItems = toDoList.querySelectorAll("li:nth-of-type(2n+1)");
+            if (changeFlag) {
+                oddStyleFlag = !oddStyleFlag;
+            }
+            for (let item of listItems) {
+                item.classList.toggle("odd");
+            }
+        }
+
+        function addNewItem() {
+            let inputForm = document.getElementById("inputForm");
+            let text = inputForm.value;
+            inputForm.value = "";
+            if (text !== "") {
+                let item = document.createElement("li");
+                if (evenStyleFlag) {
+                    changeEvenStyle();
+                }
+                if (oddStyleFlag) {
+                    changeOddStyle();
+                }
+                item.classList.add("newItem");
+                item.textContent = text;
+                let btn = document.createElement("div");
+                btn.classList.add("selfDeletingButton");
+                item.append(btn);
+                toDoList.prepend(item);
+                if (evenStyleFlag) {
+                    changeEvenStyle();
+                }
+                if (oddStyleFlag) {
+                    changeOddStyle();
+                }
+                item.offsetHeight;
+                item.classList.remove("newItem");
+            }
+        }
+
+        function delItem(item, changeStyleFlag = false) {
+            return new Promise(function (resolve, reject) {
+                item.classList.add("removing");
+                if ((evenStyleFlag || oddStyleFlag) == false) {
+                    setTimeout(() => {
+                        item.remove();
+                        resolve();
+                    }, 1000);
+                }
+                if (evenStyleFlag) {
+                    changeEvenStyle();
+                    setTimeout(() => {
+                        item.remove();
+                        if (!changeStyleFlag) changeEvenStyle();
+                        resolve();
+                    }, 1000);
+                }
+                if (oddStyleFlag) {
+                    changeOddStyle()
+                    setTimeout(() => {
+                        item.remove();
+                        if (!changeStyleFlag) changeOddStyle();
+                        resolve();
+                    }, 1000);
+                }
+            })
+        }
+
+        function changeCompletedStyle(event) {
+            if (event.target.tagName != "LI") return;
+            let clone = event.target.cloneNode(true);
+            if (event.target.classList.contains("completed")) {
+                clone.classList.remove("completed");
+                clone.classList.add("newItem");
+                let listItems = toDoList.querySelectorAll("li:not(.completed)");
+                delItem(event.target, true).then(
+                    () => {
+                        if (listItems.length != 0) {
+                            let lastLI = listItems[listItems.length - 1];
+                            lastLI.after(clone);
+                        } else {
+                            toDoList.prepend(clone);
+                        }
+                        if (evenStyleFlag) {
+                            clone.classList.remove("even");
+                            changeEvenStyle();
+                        }
+                        if (oddStyleFlag) {
+                            clone.classList.remove("odd");
+                            changeOddStyle();
+                        }
+                        clone.offsetHeight;
+                        clone.classList.remove("newItem");
+                    });
+            } else {
+                clone.classList.add("completed", "newItem");
+                delItem(event.target, true).then(
+                    () => {
+                        toDoList.append(clone);
+                        if (evenStyleFlag) {
+                            clone.classList.remove("even");
+                            changeEvenStyle();
+                        }
+                        if (oddStyleFlag) {
+                            clone.classList.remove("odd");
+                            changeOddStyle();
+                        }
+                        clone.offsetHeight;
+                        clone.classList.remove("newItem");
+                    });
+            }
+        }
+
+        function delCurrentItem(event) {
+            if (event.target.tagName == "DIV") {
+                let parent = event.target.closest("li");
+                delItem(parent);
+            }
+        }
+
+        function delLastItem() {
+            let listItems = toDoList.querySelectorAll("li");
+            if (listItems.length != 0) {
+                let item = listItems[listItems.length - 1];
+                delItem(item);
+            }
+        }
+
+        function delFirstItem() {
+            let item = toDoList.querySelector("li");
+            if (item !== null) {
+                delItem(item);
+            }
+        }
+
+        function changeAddButton() {
+            let mediaQuery = window.matchMedia("(max-width: 610px)");
+            let btn = document.getElementById("addBtn");
+            if (mediaQuery.matches) {
+                btn.textContent = "\u{271A}";
+            } else {
+                btn.textContent = "Добавить";
+            }
+        }
+
+        let evenStyleFlag = false,
+            oddStyleFlag = false,
+            toDoList = document.getElementById("toDoList"),
+            delLastBtn = document.getElementById("delLastBtn"),
+            delFirstBtn = document.getElementById("delFirstBtn"),
+            addBtn = document.getElementById("addBtn"),
+            evenStyleBox = document.getElementById("checkboxEven"),
+            oddStyleBox = document.getElementById("checkboxOdd");
+
+        delLastBtn.addEventListener("click", delLastItem);
+        delFirstBtn.addEventListener("click", delFirstItem);
+        addBtn.addEventListener("click", addNewItem);
+        evenStyleBox.addEventListener("click", changeEvenStyle);
+        oddStyleBox.addEventListener("click", changeOddStyle);
+        toDoList.addEventListener("click", delCurrentItem);
+        toDoList.addEventListener("click", changeCompletedStyle);
+        window.addEventListener("resize", changeAddButton);
+
+        changeEvenStyle(true);
+        changeAddButton()
+    </script>
+
+</body>
+
+</html>
